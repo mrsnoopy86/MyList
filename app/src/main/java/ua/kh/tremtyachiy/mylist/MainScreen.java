@@ -127,7 +127,9 @@ public class MainScreen extends ActionBarActivity{
                         if(OPEN_MAP == 0) {
                             if (hasConnection()) {
                                 maps.initMap(getFragmentManager());
-                            } else { createConnectionDialog(); }
+                            } else {
+                                createConnectionDialog();
+                            }
                         }
                         OPEN_MAP = 1;
                         toolbar.setTitle("Карта");
