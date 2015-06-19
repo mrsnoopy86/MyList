@@ -2,6 +2,8 @@ package ua.kh.tremtyachiy.mylist;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -11,11 +13,35 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
  */
 public class MainScreen extends ActionBarActivity {
     SweetAlertDialog pDialog;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainscreen);
+        initElements();
+    }
+
+    private void initElements() {
+        /*
+        init Toolbar
+         */
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.app_name);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
+            }
+        });
+        toolbar.inflateMenu(R.menu.menu);
+        toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     public void onClickMe(View view){
