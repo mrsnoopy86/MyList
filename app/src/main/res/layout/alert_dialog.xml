@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading"
+    android:layout_width="@dimen/alert_width"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/custom_image"
+        android:layout_width="53dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/app_name"
+        android:visibility="gone"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="19sp"
+        android:textColor="#575757"
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
+        android:text="Название списка" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:textColor="@android:color/holo_blue_dark"
+        android:background="@drawable/apptheme_edit_text_holo_light"/>
+
+    <TextView
+        android:text="Описание"
+        android:id="@+id/content_text"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="19sp"
+        android:textColor="#575757"
+        android:visibility="visible" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:textSize="16sp"
+        android:hint="не обязательно"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textColorHint="#797979"
+        android:gravity="center_horizontal|bottom"
+        android:background="@drawable/apptheme_edit_text_holo_light"/>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/cancel_button"
+            style="@style/dialog_blue_button"
+            android:background="@drawable/gray_button_background"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            android:text="@string/dialog_cancel"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/confirm_button"
+            style="@style/dialog_blue_button"
+            android:text="@string/dialog_ok"
+            android:onClick="onClick"/>
+    </LinearLayout>
+</LinearLayout>

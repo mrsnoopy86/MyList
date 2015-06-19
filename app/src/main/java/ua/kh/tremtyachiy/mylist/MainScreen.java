@@ -1,6 +1,8 @@
 package ua.kh.tremtyachiy.mylist;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -8,9 +10,15 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -18,12 +26,16 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 /**
  * Created by User on 18.06.2015.
  */
-public class MainScreen extends ActionBarActivity {
+public class MainScreen extends ActionBarActivity{
     Maps maps = new Maps();
-    SweetAlertDialog pDialog;
-    Toolbar toolbar;
+    private Toolbar toolbar;
     private DrawerMenu drawerMyMenu = new DrawerMenu();
     private int OPEN_MAP = 0;
+    private final int DIALOG = 1;
+    private EditText titleList;
+    private EditText aboutList;
+    private Button okeyDialog;
+    private Button cancelDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +55,11 @@ public class MainScreen extends ActionBarActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                return false;
+                if (item.getItemId() == R.id.add) {
+                    showDialog(DIALOG);
+                    return true;
+                }
+                return true;
             }
         });
         toolbar.inflateMenu(R.menu.menu);
@@ -135,6 +151,8 @@ public class MainScreen extends ActionBarActivity {
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
                         Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
                         startActivity(intent);
+                        maps.initMap(getFragmentManager());
+                        sweetAlertDialog.cancel();
                     }
                 })
                 .show();
@@ -155,5 +173,32 @@ public class MainScreen extends ActionBarActivity {
             return true;
         }
         return false;
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        final AlertDialog.Builder adb = new AlertDialog.Builder(this);
+        LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.alert_dialog, null);
+        okeyDialog = (Button) view.findViewById(R.id.confirm_button);
+        cancelDialog = (Button) view.findViewById(R.id.cancel_button);
+        titleList = (EditText) view.findViewById(R.id.editText);
+        aboutList = (EditText) view.findViewById(R.id.editText2);
+        adb.setView(view);
+        return adb.create();
+    }
+
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.confirm_button:
+                titleList.setText("");
+                aboutList.setText("");
+                dismissDialog(DIALOG);
+                break;
+            case R.id.cancel_button:
+                titleList.setText("");
+                aboutList.setText("");
+                dismissDialog(DIALOG);
+                break;
+        }
     }
 }

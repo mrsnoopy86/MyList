@@ -56,13 +56,36 @@
                         android:background="@drawable/imageview"/>
                 </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/tab2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Чтобы создать список покупок, нажмите на &quot;корзину&quot;."
+                        android:id="@+id/textView2"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="22sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:textColor="@color/blue_main" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/imageView2"
+                        android:layout_below="@+id/textView2"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_add_shopping_cart_white_24dp"
+                        android:background="@drawable/imageview"/>
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/tab3"

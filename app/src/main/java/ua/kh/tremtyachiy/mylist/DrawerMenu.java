@@ -23,7 +23,6 @@ public class DrawerMenu {
 
     public void initDrawerMenu(final Activity activity, Toolbar toolbar){
         drawerMenu = new DrawerBuilder()
-//                .withSliderBackgroundColor(activity.getResources().getColor(R.color.blue_main))
                 .withToolbar(toolbar)
                 .withDisplayBelowToolbar(true)
                 .withActionBarDrawerToggleAnimated(true)

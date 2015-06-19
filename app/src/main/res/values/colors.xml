@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blue_main">#AEDEF4</color>
+    <color name="blue_main_pressed">#AEDEF0</color>
     <color name="mainBackground">#e6e5e5</color>
+    <color name="sweet_dialog_bg_color">#FFFFFF</color>
+    <color name="button_text_color">#FFFFFF</color>
+    <color name="float_transparent">#00000000</color>
 </resources>
