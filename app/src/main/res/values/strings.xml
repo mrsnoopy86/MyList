@@ -2,4 +2,9 @@
     <string name="app_name">My List</string>
     <string name="clear_menu">Очистить</string>
     <string name="sort_menu">Сортировать</string>
+    <string name="nav_menu_item1">Настройки</string>
+    <string name="nav_menu_item2">Отзыв</string>
+    <string name="nav_menu_item3">Поделиться</string>
+    <string name="nav_menu_item4">Помощь</string>
+    <string name="nav_menu_item5">Выход</string>
 </resources>
