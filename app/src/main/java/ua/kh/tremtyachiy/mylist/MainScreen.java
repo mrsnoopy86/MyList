@@ -50,7 +50,7 @@ public class MainScreen extends ActionBarActivity{
         init Toolbar
          */
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.app_name);
+        toolbar.setTitle("Списки");
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -106,16 +106,19 @@ public class MainScreen extends ActionBarActivity{
                         toolbar.getMenu().getItem(0).setVisible(true);
                         toolbar.getMenu().getItem(1).setVisible(true);
                         toolbar.getMenu().getItem(2).setVisible(false);
+                        toolbar.setTitle("Списки");
                         break;
                     case "tag2":
                         toolbar.getMenu().getItem(1).setVisible(false);
                         toolbar.getMenu().getItem(0).setVisible(true);
                         toolbar.getMenu().getItem(2).setVisible(true);
+                        toolbar.setTitle("Создать");
                         break;
                     case "tag3":
                         toolbar.getMenu().getItem(0).setVisible(false);
                         toolbar.getMenu().getItem(1).setVisible(true);
                         toolbar.getMenu().getItem(2).setVisible(false);
+                        toolbar.setTitle("Адреса");
                         break;
                     case "tag4":
                         toolbar.getMenu().getItem(0).setVisible(false);
@@ -127,6 +130,7 @@ public class MainScreen extends ActionBarActivity{
                             } else { createConnectionDialog(); }
                         }
                         OPEN_MAP = 1;
+                        toolbar.setTitle("Карта");
                         break;
                 }
             }
