@@ -31,4 +31,5 @@ dependencies {
         transitive = true
     }
     compile 'com.google.android.gms:play-services-maps:7.5.0'
+    compile 'info.hoang8f:android-segmented:1.0.5'
 }

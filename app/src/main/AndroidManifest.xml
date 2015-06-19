@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ua.kh.tremtyachiy.mylist" >
 
-    <permission
-        android:name="com.google.maps.android.utils.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature" />
-
     <uses-permission android:name="com.google.maps.android.utils.permission.MAPS_RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -27,7 +23,7 @@
         tools:replace="android:icon" >
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB5MFdhUQ4ptDdQrOz-Qtjqesi6Fn9eyjA" />
+            android:value="AIzaSyDK1sDDkIy_dZFGxpPKngAepQnABEE-Z50" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

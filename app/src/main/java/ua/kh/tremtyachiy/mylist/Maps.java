@@ -26,7 +26,6 @@ public class Maps implements OnMapReadyCallback {
         }
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.setBuildingsEnabled(true);
-        mMapFragment.getMapAsync(this);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setMyLocationEnabled(true);
@@ -36,6 +35,10 @@ public class Maps implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                 new LatLng(49.994399, 36.236583), 10));
+    }
+
+    public void onMapReadyCamera(){
+        mMapFragment.getMapAsync(this);
     }
 
     public GoogleMap getMap() {

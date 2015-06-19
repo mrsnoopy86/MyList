@@ -2,7 +2,6 @@ package ua.kh.tremtyachiy.mylist;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -12,30 +11,44 @@ import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by User on 18.06.2015.
  */
-public class MainScreen extends ActionBarActivity{
+public class MainScreen extends ActionBarActivity implements CompoundButton.OnCheckedChangeListener{
     Maps maps = new Maps();
     private Toolbar toolbar;
     private DrawerMenu drawerMyMenu = new DrawerMenu();
     private int OPEN_MAP = 0;
     private final int DIALOG = 1;
+    private final int DIALOG_SECOND = 2;
     private EditText titleList;
     private EditText aboutList;
     private Button okeyDialog;
     private Button cancelDialog;
+    private CheckBox checkBoxProduct;
+    private CheckBox checkBoxBuild;
+    private CheckBox checkBoxTech;
+    private CheckBox checkBoxRemember;
+    private CheckBox checkBoxToday;
+    private CheckBox checkBoxImportant;
+    private TextView textViewProduct;
+    private TextView textViewBuild;
+    private TextView textViewTech;
+    private TextView textViewRemember;
+    private TextView textViewToday;
+    private TextView textViewImportant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,11 +137,13 @@ public class MainScreen extends ActionBarActivity{
                         toolbar.getMenu().getItem(0).setVisible(false);
                         toolbar.getMenu().getItem(1).setVisible(false);
                         toolbar.getMenu().getItem(2).setVisible(false);
-                        if(OPEN_MAP == 0) {
+                        if (OPEN_MAP == 0) {
                             if (hasConnection()) {
                                 maps.initMap(getFragmentManager());
+                                maps.onMapReadyCamera();
                             } else {
                                 createConnectionDialog();
+                                maps.initMap(getFragmentManager());
                             }
                         }
                         OPEN_MAP = 1;
@@ -158,6 +173,7 @@ public class MainScreen extends ActionBarActivity{
                         Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
                         startActivity(intent);
                         maps.initMap(getFragmentManager());
+                        maps.onMapReadyCamera();
                         sweetAlertDialog.cancel();
                     }
                 })
@@ -184,26 +200,137 @@ public class MainScreen extends ActionBarActivity{
     @Override
     protected Dialog onCreateDialog(int id) {
         final AlertDialog.Builder adb = new AlertDialog.Builder(this);
-        LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.alert_dialog, null);
-        okeyDialog = (Button) view.findViewById(R.id.confirm_button);
-        cancelDialog = (Button) view.findViewById(R.id.cancel_button);
-        titleList = (EditText) view.findViewById(R.id.editText);
-        aboutList = (EditText) view.findViewById(R.id.editText2);
-        adb.setView(view);
+        switch (id){
+            case 1:
+                LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.my_alert_dialog, null);
+                okeyDialog = (Button) view.findViewById(R.id.confirm_button);
+                cancelDialog = (Button) view.findViewById(R.id.cancel_button);
+                titleList = (EditText) view.findViewById(R.id.editText);
+                aboutList = (EditText) view.findViewById(R.id.editText2);
+                adb.setView(view);
+                break;
+            case 2:
+                LinearLayout viewSecond = (LinearLayout) getLayoutInflater().inflate(R.layout.my_alert_dialog_second, null);
+                checkBoxProduct = (CheckBox) viewSecond.findViewById(R.id.checkBoxProduct);
+                checkBoxBuild = (CheckBox) viewSecond.findViewById(R.id.checkBoxBuild);
+                checkBoxTech = (CheckBox) viewSecond.findViewById(R.id.checkBoxTech);
+                checkBoxRemember = (CheckBox) viewSecond.findViewById(R.id.checkBoxRemeber);
+                checkBoxToday = (CheckBox) viewSecond.findViewById(R.id.checkBoxToday);
+                checkBoxImportant = (CheckBox) viewSecond.findViewById(R.id.checkBoxImportant);
+
+                textViewProduct = (TextView) viewSecond.findViewById(R.id.textViewProduct);
+                textViewBuild = (TextView) viewSecond.findViewById(R.id.textViewBuild);
+                textViewTech = (TextView) viewSecond.findViewById(R.id.textViewTech);
+                textViewRemember = (TextView) viewSecond.findViewById(R.id.textViewRemember);
+                textViewToday = (TextView) viewSecond.findViewById(R.id.textViewToday);
+                textViewImportant = (TextView) viewSecond.findViewById(R.id.textViewImportant);
+
+                checkBoxProduct.setOnCheckedChangeListener(this);
+                checkBoxBuild.setOnCheckedChangeListener(this);
+                checkBoxTech.setOnCheckedChangeListener(this);
+                checkBoxRemember.setOnCheckedChangeListener(this);
+                checkBoxToday.setOnCheckedChangeListener(this);
+                checkBoxImportant.setOnCheckedChangeListener(this);
+                adb.setView(viewSecond);
+                break;
+        }
+
         return adb.create();
     }
 
-    public void onClick(View view){
-        switch (view.getId()){
+    private void checkCancel(){
+        checkBoxProduct.setChecked(false);
+        checkBoxBuild.setChecked(false);
+        checkBoxTech.setChecked(false);
+        checkBoxRemember.setChecked(false);
+        checkBoxToday.setChecked(false);
+        checkBoxImportant.setChecked(false);
+    }
+
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.confirm_button:
                 titleList.setText("");
                 aboutList.setText("");
                 dismissDialog(DIALOG);
+                showDialog(DIALOG_SECOND);
                 break;
             case R.id.cancel_button:
                 titleList.setText("");
                 aboutList.setText("");
                 dismissDialog(DIALOG);
+                break;
+            case R.id.confirm_button2:
+                dismissDialog(DIALOG_SECOND);
+                new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Успешно.")
+                        .setConfirmText("Да")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.cancel();
+                            }
+                        })
+                        .show();
+                checkCancel();
+                break;
+            case R.id.cancel_button2:
+                dismissDialog(DIALOG_SECOND);
+                checkCancel();
+                checkBoxBuild.setOnCheckedChangeListener(this);
+                break;
+        }
+    }
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()){
+            case R.id.checkBoxProduct:
+                if(isChecked){
+                    checkBoxBuild.setChecked(false);
+                    checkBoxTech.setChecked(false);
+                    textViewProduct.setTextColor(getResources().getColor(R.color.blue_main_dark));
+                } else {
+                    textViewProduct.setTextColor(getResources().getColor(R.color.hint_text));
+                }
+                break;
+            case R.id.checkBoxBuild:
+                if(isChecked){
+                    checkBoxProduct.setChecked(false);
+                    checkBoxTech.setChecked(false);
+                    textViewBuild.setTextColor(getResources().getColor(R.color.blue_main_dark));
+                } else {
+                    textViewBuild.setTextColor(getResources().getColor(R.color.hint_text));
+                }
+                break;
+            case R.id.checkBoxTech:
+                if(isChecked){
+                    checkBoxBuild.setChecked(false);
+                    checkBoxProduct.setChecked(false);
+                    textViewTech.setTextColor(getResources().getColor(R.color.blue_main_dark));
+                } else {
+                    textViewTech.setTextColor(getResources().getColor(R.color.hint_text));
+                }
+                break;
+            case R.id.checkBoxRemeber:
+                if(isChecked){
+                    textViewRemember.setTextColor(getResources().getColor(R.color.blue_main_dark));
+                } else {
+                    textViewRemember.setTextColor(getResources().getColor(R.color.hint_text));
+                }
+                break;
+            case R.id.checkBoxToday:
+                if(isChecked){
+                    textViewToday.setTextColor(getResources().getColor(R.color.blue_main_dark));
+                } else {
+                    textViewToday.setTextColor(getResources().getColor(R.color.hint_text));
+                }
+                break;
+            case R.id.checkBoxImportant:
+                if(isChecked){
+                    textViewImportant.setTextColor(getResources().getColor(R.color.blue_main_dark));
+                } else {
+                    textViewImportant.setTextColor(getResources().getColor(R.color.hint_text));
+                }
                 break;
         }
     }

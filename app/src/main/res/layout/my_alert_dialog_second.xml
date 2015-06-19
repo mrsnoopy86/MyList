@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading_second"
+    android:layout_width="@dimen/alert_width"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/title_text_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="19sp"
+        android:textColor="#575757"
+        android:layout_marginTop="10dp"
+        android:singleLine="true"
+        android:text="Категория товара" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/checkBoxProduct"
+            android:background="@drawable/apptheme_btn_check_holo_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Продукты"
+            android:id="@+id/textViewProduct"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/material_drawer_hint_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/checkBoxBuild"
+            android:background="@drawable/apptheme_btn_check_holo_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Стройматериалы"
+            android:id="@+id/textViewBuild"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/material_drawer_hint_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/checkBoxTech"
+            android:background="@drawable/apptheme_btn_check_holo_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Техника"
+            android:id="@+id/textViewTech"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/material_drawer_hint_text"/>
+    </LinearLayout>
+
+    <TextView
+        android:text="Приоритет"
+        android:id="@+id/content_text"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="19sp"
+        android:textColor="#575757"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/checkBoxRemeber"
+            android:background="@drawable/apptheme_btn_check_holo_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Не забыть"
+            android:id="@+id/textViewRemember"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/material_drawer_hint_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/checkBoxToday"
+            android:background="@drawable/apptheme_btn_check_holo_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Сегодня"
+            android:id="@+id/textViewToday"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/material_drawer_hint_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/checkBoxImportant"
+            android:background="@drawable/apptheme_btn_check_holo_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Важно"
+            android:id="@+id/textViewImportant"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:textColor="@color/material_drawer_hint_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/cancel_button2"
+            style="@style/dialog_blue_button"
+            android:background="@drawable/gray_button_background"
+            android:layout_marginRight="10dp"
+            android:text="Отмена"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/confirm_button2"
+            style="@style/dialog_blue_button"
+            android:text="Да"
+            android:onClick="onClick"/>
+    </LinearLayout>
+</LinearLayout>
