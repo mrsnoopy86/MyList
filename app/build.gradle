@@ -30,4 +30,5 @@ dependencies {
     compile('com.mikepenz:materialdrawer:3.0.6@aar') {
         transitive = true
     }
+    compile 'com.google.android.gms:play-services-maps:7.5.0'
 }

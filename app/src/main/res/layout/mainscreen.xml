@@ -27,13 +27,34 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
 
-                <LinearLayout
+                <RelativeLayout
                     android:id="@+id/tab1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent">
 
-                </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ваш список пока пуст.\nДля добавления списка перейдите во вкладку &quot;добавить&quot;."
+                        android:id="@+id/textView"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="22sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:textColor="@color/blue_main" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/imageView"
+                        android:layout_below="@+id/textView"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_playlist_add_white_24dp"
+                        android:background="@drawable/imageview"/>
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/tab2"
@@ -57,6 +78,12 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
+                    <fragment
+                        android:name="com.google.android.gms.maps.MapFragment"
+                        android:id="@+id/map"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
                 </LinearLayout>
             </FrameLayout>
 
@@ -64,7 +91,8 @@
                 android:id="@android:id/tabs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0" />
+                android:layout_weight="0"
+                android:background="@color/blue_main" />
 
         </LinearLayout>
     </TabHost>

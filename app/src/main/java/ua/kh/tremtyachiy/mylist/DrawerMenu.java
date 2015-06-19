@@ -21,9 +21,9 @@ public class DrawerMenu {
         return drawerMenu;
     }
 
-    public void initDrawerMenu(Activity activity, Toolbar toolbar){
+    public void initDrawerMenu(final Activity activity, Toolbar toolbar){
         drawerMenu = new DrawerBuilder()
-                .withSliderBackgroundColor(activity.getResources().getColor(R.color.blue_main))
+//                .withSliderBackgroundColor(activity.getResources().getColor(R.color.blue_main))
                 .withToolbar(toolbar)
                 .withDisplayBelowToolbar(true)
                 .withActionBarDrawerToggleAnimated(true)
@@ -54,6 +54,11 @@ public class DrawerMenu {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
+                        switch (iDrawerItem.getIdentifier()) {
+                            case 5:
+                                activity.finish();
+                                break;
+                        }
                         return true;
                     }
                 })

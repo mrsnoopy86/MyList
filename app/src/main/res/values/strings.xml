@@ -7,4 +7,9 @@
     <string name="nav_menu_item3">Поделиться</string>
     <string name="nav_menu_item4">Помощь</string>
     <string name="nav_menu_item5">Выход</string>
+    <string name="spisok_tab">Список</string>
+    <string name="spisok_tab2">Создать</string>
+    <string name="spisok_tab3">Адреса</string>
+    <string name="spisok_tab4">Карта</string>
+    <string name="add_menu">Добавить</string>
 </resources>
