@@ -278,12 +278,12 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 sweetAlertDialog.cancel();
-                                if(fragmentAdd.isAdded()){ } else {
-                                    fragmentTransaction = fragmentManager.beginTransaction();
-                                    fragmentTransaction.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                    fragmentTransaction.add(R.id.tab2, fragmentAdd);
-                                    fragmentTransaction.commit();
-                                }
+//                                if(fragmentAdd.isAdded()){ } else {
+//                                    fragmentTransaction = fragmentManager.beginTransaction();
+//                                    fragmentTransaction.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                                    fragmentTransaction.add(R.id.tab2, fragmentAdd);
+//                                    fragmentTransaction.commit();
+//                                }
                             }
                         })
                         .show();
