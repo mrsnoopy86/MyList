@@ -1,6 +1,7 @@
 package ua.kh.tremtyachiy.mylist;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +24,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import ua.kh.tremtyachiy.mylist.fragment.FragmentAdd;
 
 /**
  * Created by User on 18.06.2015.
@@ -33,7 +36,6 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
     private int OPEN_MAP = 0;
     private final int DIALOG = 1;
     private final int DIALOG_SECOND = 2;
-    private final int DIALOG_THIRD = 3;
     private EditText titleList;
     private EditText aboutList;
     private Button okeyDialog;
@@ -50,6 +52,9 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
     private TextView textViewRemember;
     private TextView textViewToday;
     private TextView textViewImportant;
+    private FragmentTransaction fragmentTransaction;
+    FragmentAdd fragmentAdd = new FragmentAdd();
+    private FragmentManager fragmentManager = getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -273,6 +278,12 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 sweetAlertDialog.cancel();
+                                if(fragmentAdd.isAdded()){ } else {
+                                    fragmentTransaction = fragmentManager.beginTransaction();
+                                    fragmentTransaction.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                    fragmentTransaction.add(R.id.tab2, fragmentAdd);
+                                    fragmentTransaction.commit();
+                                }
                             }
                         })
                         .show();
