@@ -2,6 +2,7 @@ package ua.kh.tremtyachiy.mylist;
 
 import android.app.Dialog;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,10 +10,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import ua.kh.tremtyachiy.mylist.fragment.FragmentAdd;
@@ -76,6 +78,7 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
             public boolean onMenuItemClick(MenuItem item) {
                 if (item.getItemId() == R.id.add) {
                     showDialog(DIALOG);
+                    item.setVisible(false);
                     return true;
                 }
                 return true;
@@ -224,12 +227,12 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                 checkBoxToday = (CheckBox) viewSecond.findViewById(R.id.checkBoxToday);
                 checkBoxImportant = (CheckBox) viewSecond.findViewById(R.id.checkBoxImportant);
 
-                textViewProduct = (TextView) viewSecond.findViewById(R.id.textViewProduct);
-                textViewBuild = (TextView) viewSecond.findViewById(R.id.textViewBuild);
-                textViewTech = (TextView) viewSecond.findViewById(R.id.textViewTech);
-                textViewRemember = (TextView) viewSecond.findViewById(R.id.textViewRemember);
-                textViewToday = (TextView) viewSecond.findViewById(R.id.textViewToday);
-                textViewImportant = (TextView) viewSecond.findViewById(R.id.textViewImportant);
+//                textViewProduct = (TextView) viewSecond.findViewById(R.id.textViewProduct);
+//                textViewBuild = (TextView) viewSecond.findViewById(R.id.textViewBuild);
+//                textViewTech = (TextView) viewSecond.findViewById(R.id.textViewTech);
+//                textViewRemember = (TextView) viewSecond.findViewById(R.id.textViewRemember);
+//                textViewToday = (TextView) viewSecond.findViewById(R.id.textViewToday);
+//                textViewImportant = (TextView) viewSecond.findViewById(R.id.textViewImportant);
 
                 checkBoxProduct.setOnCheckedChangeListener(this);
                 checkBoxBuild.setOnCheckedChangeListener(this);
@@ -259,15 +262,20 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.confirm_button:
-                titleList.setText("");
-                aboutList.setText("");
-                dismissDialog(DIALOG);
-                showDialog(DIALOG_SECOND);
+                if(TextUtils.isEmpty(titleList.getText())){
+                    Toast.makeText(this, "Введите название списка.", Toast.LENGTH_SHORT).show();
+                } else {
+                    titleList.setText("");
+                    aboutList.setText("");
+                    dismissDialog(DIALOG);
+                    showDialog(DIALOG_SECOND);
+                }
                 break;
             case R.id.cancel_button:
                 titleList.setText("");
                 aboutList.setText("");
                 dismissDialog(DIALOG);
+                toolbar.getMenu().getItem(2).setVisible(true);
                 break;
             case R.id.confirm_button2:
                 dismissDialog(DIALOG_SECOND);
@@ -278,6 +286,7 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 sweetAlertDialog.cancel();
+                                toolbar.getMenu().getItem(2).setVisible(true);
 //                                if(fragmentAdd.isAdded()){ } else {
 //                                    fragmentTransaction = fragmentManager.beginTransaction();
 //                                    fragmentTransaction.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
