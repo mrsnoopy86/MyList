@@ -26,13 +26,14 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 /**
  * Created by User on 18.06.2015.
  */
-public class MainScreen extends ActionBarActivity implements CompoundButton.OnCheckedChangeListener{
+public class MainScreen extends ActionBarActivity implements CompoundButton.OnCheckedChangeListener {
     Maps maps = new Maps();
     private Toolbar toolbar;
     private DrawerMenu drawerMyMenu = new DrawerMenu();
     private int OPEN_MAP = 0;
     private final int DIALOG = 1;
     private final int DIALOG_SECOND = 2;
+    private final int DIALOG_THIRD = 3;
     private EditText titleList;
     private EditText aboutList;
     private Button okeyDialog;
@@ -159,7 +160,7 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                 .setTitleText("Отсутствует подключени.")
                 .setContentText("Желаете перейти в настройки?")
                 .setCancelText("Нет, не надо")
-                .setConfirmText("Да, прейти")
+                .setConfirmText("Да, перейти")
                 .showCancelButton(true)
                 .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
@@ -200,7 +201,7 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
     @Override
     protected Dialog onCreateDialog(int id) {
         final AlertDialog.Builder adb = new AlertDialog.Builder(this);
-        switch (id){
+        switch (id) {
             case 1:
                 LinearLayout view = (LinearLayout) getLayoutInflater().inflate(R.layout.my_alert_dialog, null);
                 okeyDialog = (Button) view.findViewById(R.id.confirm_button);
@@ -233,12 +234,15 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                 checkBoxImportant.setOnCheckedChangeListener(this);
                 adb.setView(viewSecond);
                 break;
+            case 3:
+                LinearLayout viewThird = (LinearLayout) getLayoutInflater().inflate(R.layout.alert_dialog_succes, null);
+                adb.setView(viewThird);
         }
-
+        adb.setCancelable(false);
         return adb.create();
     }
 
-    private void checkCancel(){
+    private void checkCancel() {
         checkBoxProduct.setChecked(false);
         checkBoxBuild.setChecked(false);
         checkBoxTech.setChecked(false);
@@ -281,11 +285,12 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                 break;
         }
     }
+
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()){
+        switch (buttonView.getId()) {
             case R.id.checkBoxProduct:
-                if(isChecked){
+                if (isChecked) {
                     checkBoxBuild.setChecked(false);
                     checkBoxTech.setChecked(false);
                     textViewProduct.setTextColor(getResources().getColor(R.color.blue_main_dark));
@@ -294,7 +299,7 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                 }
                 break;
             case R.id.checkBoxBuild:
-                if(isChecked){
+                if (isChecked) {
                     checkBoxProduct.setChecked(false);
                     checkBoxTech.setChecked(false);
                     textViewBuild.setTextColor(getResources().getColor(R.color.blue_main_dark));
@@ -303,7 +308,7 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                 }
                 break;
             case R.id.checkBoxTech:
-                if(isChecked){
+                if (isChecked) {
                     checkBoxBuild.setChecked(false);
                     checkBoxProduct.setChecked(false);
                     textViewTech.setTextColor(getResources().getColor(R.color.blue_main_dark));
@@ -312,21 +317,21 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                 }
                 break;
             case R.id.checkBoxRemeber:
-                if(isChecked){
+                if (isChecked) {
                     textViewRemember.setTextColor(getResources().getColor(R.color.blue_main_dark));
                 } else {
                     textViewRemember.setTextColor(getResources().getColor(R.color.hint_text));
                 }
                 break;
             case R.id.checkBoxToday:
-                if(isChecked){
+                if (isChecked) {
                     textViewToday.setTextColor(getResources().getColor(R.color.blue_main_dark));
                 } else {
                     textViewToday.setTextColor(getResources().getColor(R.color.hint_text));
                 }
                 break;
             case R.id.checkBoxImportant:
-                if(isChecked){
+                if (isChecked) {
                     textViewImportant.setTextColor(getResources().getColor(R.color.blue_main_dark));
                 } else {
                     textViewImportant.setTextColor(getResources().getColor(R.color.hint_text));
