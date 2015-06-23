@@ -227,12 +227,12 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                 checkBoxToday = (CheckBox) viewSecond.findViewById(R.id.checkBoxToday);
                 checkBoxImportant = (CheckBox) viewSecond.findViewById(R.id.checkBoxImportant);
 
-//                textViewProduct = (TextView) viewSecond.findViewById(R.id.textViewProduct);
-//                textViewBuild = (TextView) viewSecond.findViewById(R.id.textViewBuild);
-//                textViewTech = (TextView) viewSecond.findViewById(R.id.textViewTech);
-//                textViewRemember = (TextView) viewSecond.findViewById(R.id.textViewRemember);
-//                textViewToday = (TextView) viewSecond.findViewById(R.id.textViewToday);
-//                textViewImportant = (TextView) viewSecond.findViewById(R.id.textViewImportant);
+                textViewProduct = (TextView) viewSecond.findViewById(R.id.textViewProduct);
+                textViewBuild = (TextView) viewSecond.findViewById(R.id.textViewBuild);
+                textViewTech = (TextView) viewSecond.findViewById(R.id.textViewTech);
+                textViewRemember = (TextView) viewSecond.findViewById(R.id.textViewRemember);
+                textViewToday = (TextView) viewSecond.findViewById(R.id.textViewToday);
+                textViewImportant = (TextView) viewSecond.findViewById(R.id.textViewImportant);
 
                 checkBoxProduct.setOnCheckedChangeListener(this);
                 checkBoxBuild.setOnCheckedChangeListener(this);
@@ -287,12 +287,12 @@ public class MainScreen extends ActionBarActivity implements CompoundButton.OnCh
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 sweetAlertDialog.cancel();
                                 toolbar.getMenu().getItem(2).setVisible(true);
-//                                if(fragmentAdd.isAdded()){ } else {
-//                                    fragmentTransaction = fragmentManager.beginTransaction();
-//                                    fragmentTransaction.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                                    fragmentTransaction.add(R.id.tab2, fragmentAdd);
-//                                    fragmentTransaction.commit();
-//                                }
+                                if(fragmentAdd.isAdded()){ } else {
+                                    fragmentTransaction = fragmentManager.beginTransaction();
+                                    fragmentTransaction.setTransition(android.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                    fragmentTransaction.add(R.id.tab2, fragmentAdd);
+                                    fragmentTransaction.commit();
+                                }
                             }
                         })
                         .show();
